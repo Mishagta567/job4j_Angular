@@ -1,26 +1,40 @@
-<table>
-  <tr>
-    <th>Task name</th>
-    <th>Type</th>
-    <th>Start date</th>
-    <th>End date</th>
+<app-statistic></app-statistic>
+
+<button class="btn btn-success" (click)="addTask()">Add Task</button>
+
+<input type="checkbox" id="scales" (change)="filterTasks($event)" name="scales">
+
+<table class="container table">
+  <tr class="row thead-light">
+    <th class="text-center table-primary">Task name</th>
+    <th class="text-center table-primary">Type</th>
+    <th class="text-center table-primary">Start date</th>
+    <th class="text-center table-primary">End date</th>
   </tr>
-  <tr>
+  <tr class="row tbody">
     <td>Finish project</td>
     <td>Urgent</td>
     <td>May 10 2019</td>
     <td>Apr 24 2019</td>
   </tr>
-  <tr>
+  <tr class="row">
     <td>Call Tomm</td>
     <td>Not urgent</td>
     <td>May 15 2019</td>
     <td>May 22 2019</td>
   </tr>
-  <tr>
+  <tr class="row">
     <td>Visit friend</td>
     <td>Not urgent</td>
     <td>May 18 2019</td>
     <td>May 28 2019</td>
   </tr>
+
+  <tr class="row">
+    <td>{{ name }}</td>
+    <td>{{ category }}</td>
+    <td>{{ dateStart }}</td>
+    <td>{{ dateEnd }}</td>
+  </tr>
+
 </table>
