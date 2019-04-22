@@ -1,4 +1,9 @@
-<app-statistic></app-statistic>
+<app-statistic
+  [tasksAll] = "getTaskListsSize()"
+  [tasksPlanned] = "35"
+  [tasksOverdue] = "46"
+  [tasksFinished] = "54"
+></app-statistic>
 
 <button class="btn btn-success" (click)="addTask()">Add Task</button>
 
@@ -10,31 +15,37 @@
     <th class="text-center table-primary">Type</th>
     <th class="text-center table-primary">Start date</th>
     <th class="text-center table-primary">End date</th>
+    <th class="text-center table-primary">Status</th>
+    <th class="text-center table-primary"></th>
   </tr>
   <tr class="row tbody">
-    <td>Finish project</td>
+    <td>Finish project -1</td>
     <td>Urgent</td>
-    <td>May 10 2019</td>
-    <td>Apr 24 2019</td>
+    <td>Apr 10 2020</td>
+    <td>Apr 24 2020</td>
+    <td>To do</td>
+    <td><button class="btn btn-danger" (click)="deleteTask()">Delete task</button></td>
   </tr>
   <tr class="row">
-    <td>Call Tomm</td>
+    <td>Call Tomm -2</td>
     <td>Not urgent</td>
-    <td>May 15 2019</td>
-    <td>May 22 2019</td>
+    <td>May 15 2020</td>
+    <td>May 22 2020</td>
+    <td>To do</td>
+    <td><button class="btn btn-danger" (click)="deleteTask()">Delete task</button></td>
   </tr>
   <tr class="row">
-    <td>Visit friend</td>
+    <td>Visit friend -3</td>
     <td>Not urgent</td>
-    <td>May 18 2019</td>
-    <td>May 28 2019</td>
+    <td>June 18 2020</td>
+    <td>June 28 2020</td>
+    <td>To do</td>
+    <td><button class="btn btn-danger" (click)="deleteTask()">Delete task</button></td>
   </tr>
 
-  <tr class="row">
-    <td>{{ name }}</td>
-    <td>{{ category }}</td>
-    <td>{{ dateStart }}</td>
-    <td>{{ dateEnd }}</td>
-  </tr>
+<app-list-row
+  (deleteTaskEmitter) = "deleteTaskFromArray($event)"
+></app-list-row>
 
 </table>
+

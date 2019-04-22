@@ -9,11 +9,31 @@ import { Component, OnInit } from '@angular/core';
 export class TaskListComponent implements OnInit {
 
   constructor() { }
-  name = 'Name 10';
-  category = 'Type 10';
-  dateStart = '18:15 08-10-2018';
-  dateEnd = '20:15 08-10-2018';
-  status = 'Done';
+
+  tasks = [
+    {
+      name: 'Name 101',
+      category: 'Type 110',
+      dateStart: '18:15 08-10-2019',
+      dateEnd: '20:15 08-10-2019',
+      status: 'Done'
+    },
+    {
+      name: 'Name 102',
+      category: 'Type 102',
+      dateStart: '18:15 08-10-2019',
+      dateEnd: '20:15 08-10-2019',
+      status: 'Done'
+    }
+  ];
+
+  getTaskListsSize() {
+    return this.tasks.length;
+  }
+
+  deleteTaskFromArray(name: string) {
+    console.log('Task' + name + 'Deleted');
+  }
 
   filterTasks($event) {
     console.log($event.target.checked);
