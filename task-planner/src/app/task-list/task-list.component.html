@@ -1,8 +1,8 @@
 <app-statistic
   [tasksAll] = "getTaskListsSize()"
-  [tasksPlanned] = "35"
-  [tasksOverdue] = "46"
-  [tasksFinished] = "54"
+  [tasksPlanned] = "getTasksAmountByStatus('To do')"
+  [tasksOverdue] = "getTasksAmountByStatus('Over Due')"
+  [tasksFinished] = "getTasksAmountByStatus('Done')"
 ></app-statistic>
 
 <button class="btn btn-success" (click)="addTask()">Add Task</button>
@@ -10,6 +10,7 @@
 <input type="checkbox" id="scales" (change)="filterTasks($event)" name="scales">
 
 <table class="container table">
+
   <tr class="row thead-light">
     <th class="text-center table-primary">Task name</th>
     <th class="text-center table-primary">Type</th>
@@ -19,32 +20,29 @@
     <th class="text-center table-primary"></th>
   </tr>
   <tr class="row tbody">
-    <td>Finish project -1</td>
+    <td>Finish project -0</td>
     <td>Urgent</td>
     <td>Apr 10 2020</td>
     <td>Apr 24 2020</td>
     <td>To do</td>
-    <td><button class="btn btn-danger" (click)="deleteTask()">Delete task</button></td>
+    <!--<td><button class="btn btn-danger" (click)="deleteTask()">Delete task</button></td>-->
+    <td>Кнопка (task-list)</td>
   </tr>
-  <tr class="row">
-    <td>Call Tomm -2</td>
-    <td>Not urgent</td>
-    <td>May 15 2020</td>
-    <td>May 22 2020</td>
-    <td>To do</td>
+
+  <tr *ngFor="let tskArr of products" class="row">
+    <td>{{ tskArr.name }}</td>
+    <td>{{ tskArr.category }}</td>
+    <td>{{ tskArr.dateStart }}</td>
+    <td>{{ tskArr.dateEnd }}</td>
+    <td>{{ tskArr.status }}</td>
     <td><button class="btn btn-danger" (click)="deleteTask()">Delete task</button></td>
-  </tr>
-  <tr class="row">
-    <td>Visit friend -3</td>
-    <td>Not urgent</td>
-    <td>June 18 2020</td>
-    <td>June 28 2020</td>
-    <td>To do</td>
-    <td><button class="btn btn-danger" (click)="deleteTask()">Delete task</button></td>
+
+
   </tr>
 
 <app-list-row
   (deleteTaskEmitter) = "deleteTaskFromArray($event)"
+  (valueChange)="displayCounter($event)"
 ></app-list-row>
 
 </table>

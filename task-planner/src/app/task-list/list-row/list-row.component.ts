@@ -7,16 +7,25 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class ListRowComponent implements OnInit {
 
-  @Output() deleteTaskEmitter = new EventEmitter<string>();
+  // @Output() deleteTaskEmitter = new EventEmitter<string>();
+  @Output() deleteTaskEmitter = new EventEmitter()
+  @Output() valueChange = new EventEmitter();
+  Counter = 0;
 
-  name = 'Name 4';
+  name = 'Name -10';
   category = 'Type 10';
   dateStart = '18:15 08-10-2018';
   dateEnd = '20:15 08-10-2018';
-  status = 'Done';
+  status = 'Over Due';
 
   deleteTask() {
-    this.deleteTaskEmitter.emit(this.name);
+    this.Counter = this.Counter + 1;
+    this.deleteTaskEmitter.emit(this.Counter);
+  }
+
+  valueChanged() {
+    this.Counter = this.Counter + 1;
+    this.deleteTaskEmitter.emit(this.Counter);
   }
 
   constructor() { }
