@@ -11,6 +11,13 @@
 
 <table class="container table">
 
+  <app-list-row
+    (deleteTaskEmitter)="deleteTaskFromArray($event)"
+    (valueChange)="displayCounter($event)"
+    [result]=value (clicked)="onClicked($event)"
+  ></app-list-row>
+
+
   <tr class="row thead-light">
     <th class="text-center table-primary">Task name</th>
     <th class="text-center table-primary">Type</th>
@@ -29,21 +36,14 @@
     <td>Кнопка (task-list)</td>
   </tr>
 
-  <tr *ngFor="let tskArr of products" class="row">
+  <tr *ngFor="let tskArr of products1" class="row">
     <td>{{ tskArr.name }}</td>
     <td>{{ tskArr.category }}</td>
     <td>{{ tskArr.dateStart }}</td>
     <td>{{ tskArr.dateEnd }}</td>
     <td>{{ tskArr.status }}</td>
-    <td><button class="btn btn-danger" (click)="deleteTask()">Delete task</button></td>
-
-
+    <td><button class="btn btn-danger" (click)="deleteTask(tskArr.name.valueOf())">Delete task</button></td>
   </tr>
-
-<app-list-row
-  (deleteTaskEmitter) = "deleteTaskFromArray($event)"
-  (valueChange)="displayCounter($event)"
-></app-list-row>
 
 </table>
 

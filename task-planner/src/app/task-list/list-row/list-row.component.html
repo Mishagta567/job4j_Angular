@@ -4,20 +4,29 @@
   <td>{{ dateStart }}</td>
   <td>{{ dateEnd }}</td>
   <td>{{ status }}</td>
-  <td><button class="btn btn-danger" (click)="deleteTask()">Delete task</button>
-      <button class="btn btn-danger" (click)="valueChanged()">Click me</button>
+  <td>
+    <button class="btn btn-danger" (click)="deleteTask()">Print count</button>
   </td>
 </tr>
 
 <tr class="row">
-  <td>Name -11</td>
+  <td>List row -11 </td>
   <td>Not urgent</td>
   <td>Sep 18 2020</td>
   <td>Sep 28 2020</td>
   <td>Over Due</td>
-  <td><button class="btn btn-danger" (click)="deleteTask()">Delete task</button></td>
+  <td><button class="btn btn-danger" (click)="deleteTask()">Print count</button></td>
 </tr>
 
+<div class="row">
+  <h1>{{result}}  Search</h1>
+  <div class="input-group input-group-lg">
+    <span class="input-group-addon glyphicon glyphicon-search" id="sizing-addon1"></span>
+    <input #input1 type="text" class="form-control" placeholder="Search by status" aria-describedby="sizing-addon1">
+  </div>
+  <br>
+  <button (click)="onClick(input1.value)" type="button" class="btn btn-primary">Search</button>
+</div>
 
 
 
