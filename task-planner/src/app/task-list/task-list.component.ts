@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { findIndex } from 'rxjs/operators';
+import index from '@angular/cli/lib/cli';
 
 @Component({
   selector: 'app-task-list',
@@ -8,95 +10,83 @@ import { Component, OnInit } from '@angular/core';
 
 export class TaskListComponent implements OnInit {
 
-  products = [
+  allTasks = [
     {
       name: 'Call Tomm -1',
       category: 'Not urgent',
       dateStart: 'May 15 2020',
       dateEnd: 'May 22 2020',
-      status: 'To do',
-      p_id: 1, pname: 'omega', pprice: 101, pimg: '1', soh: 5
+      status: 'To do'
     },
     {
       name: 'Visit friend -2',
       category: 'Not urgent',
       dateStart: 'June 18 2020',
       dateEnd: 'June 28 2020',
-      status: 'To do',
-      p_id: 2, pname: 'timex', pprice: 102, pimg: '2', soh: 10
+      status: 'To do'
     },
     {
       name: 'Fish -3',
       category: 'Urgent',
       dateStart: 'Apr 15 2020',
       dateEnd: 'Apr 25 2020',
-      status: 'Done',
-      p_id: 3, pname: 'titan', pprice: 103, pimg: '3', soh: 15
+      status: 'Done'
     },
     {
       name: 'Call Sam -4',
       category: 'Not urgent',
       dateStart: 'May 16 2020',
       dateEnd: 'May 26 2020',
-      status: 'Done',
-      p_id: '4', pname: 'fossil', pprice: 104, pimg: '4', soh: 20
+      status: 'Done'
     },
     {
       name: 'Name -5',
       category: 'Type 110',
       dateStart: '18:15 08-10-2019',
       dateEnd: '20:15 08-10-2019',
-      status: 'Done',
-      p_id: 5, pname: 'rolex', pprice: 105, pimg: '5', soh: 25
+      status: 'Done'
     },
     {
       name: 'Name -6',
       category: 'Type 102',
       dateStart: '18:15 08-10-2019',
       dateEnd: '20:15 08-10-2019',
-      status: 'Over Due',
-      p_id: 6, pname: 'Cob-brig', pprice: 106, pimg: '6', soh: 30
+      status: 'Over Due'
     }
   ];
 
-  products1 = [
-  ];
-  products2 = [
-    {
-      name: 'Name -26',
-      category: 'Type 122',
-      dateStart: '18:15 08-10-2020',
-      dateEnd: '20:15 08-10-2019',
-      status: 'To Do',
-      p_id: 6, pname: 'Cob-brig', pprice: 106, pimg: '6', soh: 30
-    }
-  ];
+  allTasks1 = [];
+  vShowFinished = true;
 
   constructor() {
-    // @ts-ignore
-    this.products1 = this.products;
+    this.allTasks1 = this.allTasks;
   }
   /////////////////////////////////
 
-  value = 'Watch';
+  value = 'Check';
   onClicked(value) {
     if (value !== '') {
-      this.products1 = this.products.filter((task) => task.status.startsWith(value));
+      this.allTasks1 = this.allTasks.slice().filter((task) => task.status.startsWith(value));
     } else {
-      this.products1 = this.products;
+      this.allTasks1 = this.allTasks.slice();
     }
   }
 
   deleteTask(name: string) {
-    console.log('Task ' + name + ' Deleted');
+    console.log('Task:: ' + name + ' Deleted');
+    const indx: number = this.allTasks1.findIndex((t) => t.name === name);
+    if (indx > -1) {
+      console.log('Task:: ' + name + ' Deleted. Index: ' + indx);
+      this.allTasks1.splice(indx, 1);
+    }
   }
 
   getTasksAmountByStatus(status) {
-    return this.products.filter((task) => task.status === status).length;
+    return this.allTasks.filter((task) => task.status === status).length;
   }
 
   getTaskListsSize() {
-    return this.products.length;
+    return this.allTasks.length;
   }
 
   deleteTaskFromArray($event) {
@@ -108,7 +98,12 @@ export class TaskListComponent implements OnInit {
   }
 
   filterTasks($event) {
-    console.log($event.target.checked);
+    this.vShowFinished = $event.target.checked;
+    console.log(this.vShowFinished);
+  }
+
+  getShowFinished() {
+    return this.vShowFinished;
   }
 
   addTask() {

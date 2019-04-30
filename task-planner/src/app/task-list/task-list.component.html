@@ -5,17 +5,16 @@
   [tasksFinished] = "getTasksAmountByStatus('Done')"
 ></app-statistic>
 
-<button class="btn btn-success" (click)="addTask()">Add Task</button>
-
-<input type="checkbox" id="scales" (change)="filterTasks($event)" name="scales">
+<table>
+  <tr>
+    <th>
+      <button class="btn btn-success" (click)="addTask()">Add Task</button>
+      <input type="checkbox" id="scales" (change)="filterTasks($event)" name="scales" checked> Показывать завершенные
+    </th>
+  </tr>
+</table>
 
 <table class="container table">
-
-  <app-list-row
-    (deleteTaskEmitter)="deleteTaskFromArray($event)"
-    (valueChange)="displayCounter($event)"
-    [result]=value (clicked)="onClicked($event)"
-  ></app-list-row>
 
 
   <tr class="row thead-light">
@@ -26,24 +25,16 @@
     <th class="text-center table-primary">Status</th>
     <th class="text-center table-primary"></th>
   </tr>
-  <tr class="row tbody">
-    <td>Finish project -0</td>
-    <td>Urgent</td>
-    <td>Apr 10 2020</td>
-    <td>Apr 24 2020</td>
-    <td>To do</td>
-    <!--<td><button class="btn btn-danger" (click)="deleteTask()">Delete task</button></td>-->
-    <td>Кнопка (task-list)</td>
-  </tr>
 
-  <tr *ngFor="let tskArr of products1" class="row">
-    <td>{{ tskArr.name }}</td>
-    <td>{{ tskArr.category }}</td>
-    <td>{{ tskArr.dateStart }}</td>
-    <td>{{ tskArr.dateEnd }}</td>
-    <td>{{ tskArr.status }}</td>
-    <td><button class="btn btn-danger" (click)="deleteTask(tskArr.name.valueOf())">Delete task</button></td>
-  </tr>
+  <app-list-row
+    (deleteTaskEmitter) = "deleteTaskFromArray($event)"
+    (valueChange)= "displayCounter($event)"
+    (nameToDelete) = "deleteTask($event)"
+
+    [vShowFinished] = "getShowFinished()"
+    [result] = value (clicked) = "onClicked($event)"
+    [allTasks1] = allTasks1
+  ></app-list-row>
 
 </table>
 

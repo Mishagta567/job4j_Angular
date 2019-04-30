@@ -8,3 +8,13 @@
   padding: 3rem 1.5rem;
   text-align: center;
 }*/
+
+.color-red {
+  color: red;
+  font-weight: 700;
+}
+
+.color-blue {
+  color: darkblue;
+  font-weight: 400;
+}
