@@ -5,10 +5,13 @@
   [tasksFinished] = "getTasksAmountByStatus('Done')"
 ></app-statistic>
 
+<app-task-add
+  (newTask01) = "addNewTask($event)"
+></app-task-add>
+
 <table>
   <tr>
     <th>
-      <button class="btn btn-success" (click)="addTask()">Add Task</button>
       <input type="checkbox" id="scales" (change)="filterTasks($event)" name="scales" checked> Показывать завершенные
     </th>
   </tr>
@@ -32,7 +35,7 @@
     (nameToDelete) = "deleteTask($event)"
 
     [vShowFinished] = "getShowFinished()"
-    [result] = value (clicked) = "onClicked($event)"
+    [result] = showSearchResult (statusSearch) = "onClicked($event)"
     [allTasks1] = allTasks1
   ></app-list-row>
 

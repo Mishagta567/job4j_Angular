@@ -3,7 +3,7 @@
   <h1>Search by status</h1>
   <div class="input-group input-group-lg">
     <span class="input-group-addon glyphicon glyphicon-search" id="sizing-addon1"></span>
-    <input #input1 type="text" class="form-control" placeholder="Search by status" aria-describedby="sizing-addon1">
+    <input #input1 type="text" class="form-control" placeholder="To Do / Done / Over Due" aria-describedby="sizing-addon1">
   </div>
   <br>
   <button (click)="onClick(input1.value)" type="button" class="btn btn-primary">Search</button>
@@ -11,14 +11,13 @@
 
 
 <tr *ngFor="let tskArr of allTasks1" class="row">
-  <ng-template [ngIf]="getStatus(vShowFinished, tskArr.status)">
+  <ng-template [ngIf]="getStatus(vShowFinished, tskArr.tStatus)">
     <td>{{ tskArr.name }}</td>
     <td>{{ tskArr.category }}</td>
     <td>{{ tskArr.dateStart }}</td>
     <td>{{ tskArr.dateEnd }}</td>
     <td >
-      <div [ngClass]="{'color-red': tskArr.status === 'Over Due', 'color-blue' : 1 == 1 }"> Yo</div>
-      {{ tskArr.status }}
+      <div [ngClass]="{'color-blue' : 1 == 1, 'color-red': tskArr.tStatus == 'Done' }"> {{ tskArr.tStatus }} </div>
     </td>
     <td><button class="btn btn-danger" (click)="deleteRow(tskArr.name.valueOf())">Delete task</button></td>
   </ng-template>

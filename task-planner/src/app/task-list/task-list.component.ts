@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { findIndex } from 'rxjs/operators';
 import index from '@angular/cli/lib/cli';
+import { Task } from './task.model';
 
 @Component({
   selector: 'app-task-list',
@@ -10,49 +11,49 @@ import index from '@angular/cli/lib/cli';
 
 export class TaskListComponent implements OnInit {
 
+  // @ts-ignore
   allTasks = [
-    {
-      name: 'Call Tomm -1',
-      category: 'Not urgent',
-      dateStart: 'May 15 2020',
-      dateEnd: 'May 22 2020',
-      status: 'To do'
-    },
-    {
-      name: 'Visit friend -2',
-      category: 'Not urgent',
-      dateStart: 'June 18 2020',
-      dateEnd: 'June 28 2020',
-      status: 'To do'
-    },
-    {
-      name: 'Fish -3',
-      category: 'Urgent',
-      dateStart: 'Apr 15 2020',
-      dateEnd: 'Apr 25 2020',
-      status: 'Done'
-    },
-    {
-      name: 'Call Sam -4',
-      category: 'Not urgent',
-      dateStart: 'May 16 2020',
-      dateEnd: 'May 26 2020',
-      status: 'Done'
-    },
-    {
-      name: 'Name -5',
-      category: 'Type 110',
-      dateStart: '18:15 08-10-2019',
-      dateEnd: '20:15 08-10-2019',
-      status: 'Done'
-    },
-    {
-      name: 'Name -6',
-      category: 'Type 102',
-      dateStart: '18:15 08-10-2019',
-      dateEnd: '20:15 08-10-2019',
-      status: 'Over Due'
-    }
+    new Task('Call Tomm -1',
+      'Not urgent',
+      'May 15 2020',
+      'To do',
+      'May 22 2020'
+    ),
+    new Task(
+      'Visit friend -2',
+      'Not urgent',
+      'Jun 18 2020',
+      'To do',
+      'Jun 28 2020'
+    ),
+    new Task(
+      'Fish -3',
+      'Urgent',
+      'Apr 15 2020',
+      'Done',
+      'Apr 25 2020'
+    ),
+    new Task(
+      'Call Sam -4',
+      'Not urgent',
+      'May 16 2020',
+      'Done',
+      'May 26 2020'
+    ),
+    new Task(
+      'Name -5',
+      'Not urgent',
+      'Sep 14 2019',
+      'Done',
+      'Sep 24 2019'
+    ),
+    new Task(
+      'Name -6',
+      'uUrgent',
+      'Oct 15 2019',
+      'Over Due',
+      'Oct 25 2019'
+    )
   ];
 
   allTasks1 = [];
@@ -63,10 +64,10 @@ export class TaskListComponent implements OnInit {
   }
   /////////////////////////////////
 
-  value = 'Check';
+  showSearchResult = 'Check';
   onClicked(value) {
     if (value !== '') {
-      this.allTasks1 = this.allTasks.slice().filter((task) => task.status.startsWith(value));
+      this.allTasks1 = this.allTasks.slice().filter((task) => task.tStatus.startsWith(value));
     } else {
       this.allTasks1 = this.allTasks.slice();
     }
@@ -81,8 +82,13 @@ export class TaskListComponent implements OnInit {
     }
   }
 
+  addNewTask($event) {
+    this.allTasks1.push($event);
+    // console.log('Name_1_2_3: ' + $event.name + ' Lengh: ' + this.allTasks1.length);
+  }
+
   getTasksAmountByStatus(status) {
-    return this.allTasks.filter((task) => task.status === status).length;
+    return this.allTasks.filter((task) => task.tStatus === status).length;
   }
 
   getTaskListsSize() {
@@ -104,10 +110,6 @@ export class TaskListComponent implements OnInit {
 
   getShowFinished() {
     return this.vShowFinished;
-  }
-
-  addTask() {
-    console.log('Task added');
   }
 
   ngOnInit() {

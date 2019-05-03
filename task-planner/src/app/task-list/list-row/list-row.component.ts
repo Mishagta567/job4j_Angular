@@ -16,13 +16,13 @@ export class ListRowComponent implements OnInit {
   @Input() result = '';
   @Input() allTasks1 = '';
   @Input() vShowFinished = true;
-  @Output() clicked = new EventEmitter<string>();
+  @Output() statusSearch = new EventEmitter<string>();
   @Output() nameToDelete = new EventEmitter<string>();
   /////////////////////////
 
   Counter = 0;
   onClick(searchTerm) {
-    this.clicked.emit(searchTerm);
+    this.statusSearch.emit(searchTerm);
   }
 
   deleteRow(taskName) {
