@@ -7,7 +7,16 @@
 
 <app-task-add
   (newTask01) = "addNewTask($event)"
+  [vEditThisTaskTA] = "getEditThisTask()"
 ></app-task-add>
+
+<app-edit-task
+  (vCancelET) = "cancelEditTask()"
+  (taskAfterEdit) = "saveChanges($event)"
+
+  [vEditThisTaskObjCp] = vEditThisTaskObjCp
+  [vEditThisTaskET] = "getEditThisTask()"
+></app-edit-task>
 
 <table>
   <tr>
@@ -33,6 +42,7 @@
     (deleteTaskEmitter) = "deleteTaskFromArray($event)"
     (valueChange)= "displayCounter($event)"
     (nameToDelete) = "deleteTask($event)"
+    (vEditTask) = "editThisTask($event)"
 
     [vShowFinished] = "getShowFinished()"
     [result] = showSearchResult (statusSearch) = "onClicked($event)"

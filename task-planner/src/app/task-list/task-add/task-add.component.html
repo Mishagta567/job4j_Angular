@@ -1,23 +1,18 @@
-task-add works!
-
-
-<table class="container table">
-  <tr>
-    <td>
-      <input (input)="taskName=$event.target.value" value="{{ taskName }}" type="text" placeholder="Task name">
-    </td>
-    <td>
-      <input (input)="taskCategory=$event.target.value" value="{{ taskCategory }}" type="text" placeholder="Not urgent / Urgent">
-    </td>
-    <td name="taskStartD">
-      <input (input)="taskDateStart=$event.target.value" value="{{ taskDateStart }}" type="text" placeholder="Mon DD YYYY">
-    </td>
-    <td> <button class="btn btn-success" (click)="addTask()">Add Task</button> </td>
-    <td>
-
-
-    </td>
-  </tr>
-</table>
+<ng-template [ngIf]="!vEditThisTaskTA">
+  <table class="container table">
+    <tr>
+      <td>
+        <input (input)="taskName=$event.target.value" value="{{ taskName }}" type="text" placeholder="Task name">
+      </td>
+      <td>
+        <input (input)="taskCategory=$event.target.value" value="{{ taskCategory }}" type="text" placeholder="Not urgent / Urgent">
+      </td>
+      <td name="taskStartD">
+        <input (input)="taskDateStart=$event.target.value" value="{{ taskDateStart }}" type="text" placeholder="Mon DD YYYY">
+      </td>
+      <td> <button class="btn btn-success" (click)="addTask()">Add Task</button> </td>
+    </tr>
+  </table>
+</ng-template>
 
 

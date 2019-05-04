@@ -12,7 +12,7 @@
 
 <tr *ngFor="let tskArr of allTasks1" class="row">
   <ng-template [ngIf]="getStatus(vShowFinished, tskArr.tStatus)">
-    <td>{{ tskArr.name }}</td>
+    <td (click)="showTaskToEdit(tskArr.name)" size="bold">{{ tskArr.name }}</td>
     <td>{{ tskArr.category }}</td>
     <td>{{ tskArr.dateStart }}</td>
     <td>{{ tskArr.dateEnd }}</td>

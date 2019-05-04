@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { findIndex } from 'rxjs/operators';
 import index from '@angular/cli/lib/cli';
 import { Task } from './task.model';
@@ -11,7 +11,6 @@ import { Task } from './task.model';
 
 export class TaskListComponent implements OnInit {
 
-  // @ts-ignore
   allTasks = [
     new Task('Call Tomm -1',
       'Not urgent',
@@ -58,13 +57,37 @@ export class TaskListComponent implements OnInit {
 
   allTasks1 = [];
   vShowFinished = true;
+  vEditThisTaskName;
+  vEditThisTaskObj: Task;
+  vEditThisTaskObjCp: Task;
 
   constructor() {
     this.allTasks1 = this.allTasks;
   }
   /////////////////////////////////
-
   showSearchResult = 'Check';
+
+  editThisTask(value) {
+    this.vEditThisTaskName = value;
+    this.vEditThisTaskObj = this.allTasks1.slice().filter((task) => task.name.startsWith(value))[0];
+    this.vEditThisTaskObjCp =  Object.assign({}, this.vEditThisTaskObj)
+    console.log('From task-list. vEditThisTaskName = ' + this.vEditThisTaskName + 'Obj: ' + this.vEditThisTaskObj.name);
+  }
+
+  getEditThisTask() {
+    return this.vEditThisTaskName;
+  }
+
+  saveChanges(newTask) {
+    this.deleteTask(this.vEditThisTaskName);
+    this.allTasks1.push(newTask);
+    this.vEditThisTaskName = '';
+  }
+
+  cancelEditTask() {
+    this.vEditThisTaskName = '';
+  }
+
   onClicked(value) {
     if (value !== '') {
       this.allTasks1 = this.allTasks.slice().filter((task) => task.tStatus.startsWith(value));

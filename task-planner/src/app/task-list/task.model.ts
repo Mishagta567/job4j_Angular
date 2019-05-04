@@ -12,4 +12,8 @@ export class Task {
       this.tStatus = tStatus;
       this.dateEnd = dateEnd;
     }
+
+    getName() {
+      return this.name;
+    }
 }

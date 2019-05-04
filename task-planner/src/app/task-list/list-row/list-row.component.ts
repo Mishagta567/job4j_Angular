@@ -19,10 +19,14 @@ export class ListRowComponent implements OnInit {
   @Output() statusSearch = new EventEmitter<string>();
   @Output() nameToDelete = new EventEmitter<string>();
   /////////////////////////
+  @Output() vEditTask = new EventEmitter<string>();
 
-  Counter = 0;
   onClick(searchTerm) {
     this.statusSearch.emit(searchTerm);
+  }
+
+  showTaskToEdit($value) {
+    this.vEditTask.emit($value);
   }
 
   deleteRow(taskName) {
@@ -41,6 +45,7 @@ export class ListRowComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
 }
 

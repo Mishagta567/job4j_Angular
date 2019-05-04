@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Task } from '../task.model';
 import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
 
@@ -17,6 +17,8 @@ export class TaskAddComponent implements OnInit {
   taskCategory: string;
   taskDateStart: string;
   task: Task;
+
+  @Input() vEditThisTaskTA = new EventEmitter<string>();
   @Output() newTask01 = new EventEmitter<Task>();
 
   addTask() {
